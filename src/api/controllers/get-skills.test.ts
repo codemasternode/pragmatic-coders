@@ -1,4 +1,4 @@
-import chai, { expect, request } from "chai";
+import chai, { expect } from "chai";
 import { GetSkillsResponse } from "app/api/controllers/get-skills";
 import { getTestApp, TestApp } from "app/setup-integration-tests.test";
 

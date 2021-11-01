@@ -31,10 +31,6 @@ const startStorages = async (storages: Storages) => {
   await storages.knex?.migrate.latest();
 };
 
-const stopStorages = async (storages: Storages) => {
-  await storages.knex?.destroy();
-};
-
 const createStorages = (appConfig: AppConfig) => {
   const knex = buildKnex(appConfig.dbConfig);
   const skillsStorage = new SkillsDbStorage(knex);
