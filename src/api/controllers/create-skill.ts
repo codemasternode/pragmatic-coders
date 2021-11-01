@@ -11,7 +11,7 @@ export const createSkillController = (app: AppServices) => {
     const requestBody = req.body;
     if (requestBody.rate > 10 || requestBody.rate < 0) {
       throw new HttpErrorResponse(400, {
-        message: 'Invalid skill rate'
+        message: "Invalid skill rate",
       });
     }
     const createdSkill = await app.storages.skillsStorage.insert(requestBody);
