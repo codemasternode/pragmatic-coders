@@ -8,13 +8,11 @@ import chaiAsPromised from "chai-as-promised";
 import chaiHttp from "chai-http";
 import chaiSubset from "chai-subset";
 import sinonChai from "sinon-chai";
-import chaiIso8601 from 'chai-iso8601'
 
 chai.use(sinonChai);
 chai.use(chaiAsPromised);
 chai.use(chaiHttp);
 chai.use(chaiSubset);
-chai.use(chaiIso8601())
 
 export type TestApp = { services: AppServices; app: Express };
 let testApp: TestApp;
