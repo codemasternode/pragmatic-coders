@@ -1,5 +1,4 @@
 import { createServer } from "http";
-
 import { buildRouter } from "app/api/controllers/router";
 import { buildAppServices } from "app/app-services";
 import logger from "app/utils/logger";

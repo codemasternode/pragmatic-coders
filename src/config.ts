@@ -1,7 +1,7 @@
-import { createEnvReader } from "app/utils";
 import { join } from "path";
 import { Knex } from "knex";
 import { AsyncReturnType } from "app/utils/types";
+import { createEnvReader } from "app/utils";
 
 export enum Environment {
   local = "local",
