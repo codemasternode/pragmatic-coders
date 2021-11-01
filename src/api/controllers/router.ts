@@ -31,7 +31,7 @@ export async function buildRouter(services: AppServices): Promise<Express> {
 
   app.get("/skills", wrap(getSkillsController(services)));
   app.post("/skills", wrap(createSkillController(services)));
-  app.delete('/skills/:skillId', wrap(removeSkillController(services)))
+  app.delete("/skills/:skillId", wrap(removeSkillController(services)));
   // ---
   // end middlewares
   // ---
