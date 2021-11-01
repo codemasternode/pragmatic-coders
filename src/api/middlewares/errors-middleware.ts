@@ -11,13 +11,11 @@ export function errorsMiddleware() {
     };
 
     if (err instanceof HttpErrorResponse) {
-      logger.error("HttpErrorResponse", err);
       res.status(err.statusCode).send(err.body);
       return;
     }
 
     if (err instanceof TransformError) {
-      logger.error("TransformError", err);
       res.status(404).send({ message: err.message, errors: err.validationErrors });
       return;
     }

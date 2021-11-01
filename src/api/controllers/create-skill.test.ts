@@ -45,7 +45,6 @@ describe("createSkillController", () => {
     expect(response.status).to.equal(400);
 
     const responseBody = response.body;
-
     expect(responseBody.message).to.equal("Invalid skill rate");
   });
 });

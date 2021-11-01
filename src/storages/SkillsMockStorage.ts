@@ -8,6 +8,18 @@ export class SkillsMockStorage implements SkillsStorage {
     return this.skills;
   }
 
+  async remove(skillId: number): Promise<number> {
+    const foundIndex = this.skills.findIndex(skill => skill.skillId === skillId);
+
+    if (foundIndex === -1) {
+      return 0;
+    }
+
+    this.skills = this.skills.filter(skill => skill.skillId !== skillId);
+
+    return 1;
+  }
+
   async insert(data: Omit<SkillEntity, "skillId" | "updatedAt">): Promise<SkillEntity> {
     const skillEntity = {
       skillId: parseInt(this.skills.length + "" + Date.now()),

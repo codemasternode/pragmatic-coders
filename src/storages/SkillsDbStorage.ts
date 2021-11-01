@@ -13,6 +13,12 @@ export class SkillsDbStorage implements SkillsStorage {
     return z.array(skillEntitySchema).parse(result);
   }
 
+  async remove(skillId: number): Promise<number> {
+    const numberOfDeletedRows = await this.database(Table.Skills).where("skillId", skillId).del();
+
+    return numberOfDeletedRows;
+  }
+
   async insert(data: Omit<SkillEntity, "skillId" | "updatedAt">): Promise<SkillEntity> {
     const [result] = await this.database(Table.Skills)
       .insert({
