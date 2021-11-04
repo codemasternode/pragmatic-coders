@@ -21,7 +21,6 @@ export function errorsMiddleware() {
     }
 
     const status = Number(err.statusCode) || Number(err.status) || 500;
-
     logger.error("Unhandled error", {
       request: logRequest,
       status,

@@ -8,6 +8,7 @@ import { AppServices } from "app/app-services";
 import { getSkillsController } from "app/api/controllers/get-skills";
 import { createSkillController } from "app/api/controllers/create-skill";
 import { removeSkillController } from "./remove-skill";
+import { editSkillController } from "./edit-skill";
 
 export async function buildRouter(services: AppServices): Promise<Express> {
   logger.debug("Building app router");
@@ -32,6 +33,7 @@ export async function buildRouter(services: AppServices): Promise<Express> {
   app.get("/skills", wrap(getSkillsController(services)));
   app.post("/skills", wrap(createSkillController(services)));
   app.delete("/skills/:skillId", wrap(removeSkillController(services)));
+  app.put("/skills/:skillId", wrap(editSkillController(services)));
   // ---
   // end middlewares
   // ---

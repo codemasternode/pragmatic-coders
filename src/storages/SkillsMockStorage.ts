@@ -20,6 +20,25 @@ export class SkillsMockStorage implements SkillsStorage {
     return 1;
   }
 
+  async update(
+    skillId: number,
+    data: { name?: any; updatedAt?: any; skillId: number; rate: number }
+  ): Promise<SkillEntity | undefined> {
+    const findIndex = this.skills.findIndex(skill => skill.skillId === skillId);
+
+    if (findIndex === -1) {
+      return undefined;
+    }
+
+    this.skills[findIndex] = {
+      ...this.skills[findIndex],
+      ...data,
+      updatedAt: new Date(),
+    };
+
+    return this.skills[findIndex];
+  }
+
   async insert(data: Omit<SkillEntity, "skillId" | "updatedAt">): Promise<SkillEntity> {
     const skillEntity = {
       skillId: parseInt(this.skills.length + "" + Date.now()),
@@ -28,6 +47,12 @@ export class SkillsMockStorage implements SkillsStorage {
       updatedAt: new Date(),
     };
     this.skills.push(skillEntity);
+    return skillEntity;
+  }
+
+  async getById(skillId: number): Promise<SkillEntity | undefined> {
+    const skillEntity = this.skills.find(skill => skill.skillId === skillId);
+
     return skillEntity;
   }
 }
