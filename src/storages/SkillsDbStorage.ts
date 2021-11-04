@@ -5,7 +5,7 @@ import { z } from "zod";
 import { SkillsStorage } from "app/storages/SkillsStorage";
 
 export class SkillsDbStorage implements SkillsStorage {
-  constructor(private readonly database: Knex) { }
+  constructor(private readonly database: Knex) {}
 
   async getAll(): Promise<SkillEntity[]> {
     const result = await this.database(Table.Skills).select("*");
@@ -13,22 +13,23 @@ export class SkillsDbStorage implements SkillsStorage {
     return z.array(skillEntitySchema).parse(result);
   }
 
-  async update(skillId: number, data: { name?: string | undefined; rate?: number | undefined; }): Promise<SkillEntity | undefined> {
+  async update(
+    skillId: number,
+    data: { name?: string | undefined; rate?: number | undefined }
+  ): Promise<SkillEntity | undefined> {
     const skills: SkillEntity[] = await this.database(Table.Skills)
       .where("skillId", skillId)
       .update({ ...data, updatedAt: new Date() })
-      .returning("*")
-    const skill = skills[0]
+      .returning("*");
+    const skill = skills[0];
 
-    return skill
+    return skill;
   }
 
   async getById(skillId: number): Promise<SkillEntity> {
-    const skill = await this.database(Table.Skills)
-      .where("skillId", skillId)
-      .first()
+    const skill = await this.database(Table.Skills).where("skillId", skillId).first();
 
-    return skill
+    return skill;
   }
 
   async remove(skillId: number): Promise<number> {
